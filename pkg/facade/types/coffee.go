@@ -1,12 +1,12 @@
 package types
 
-type CoffeeType int
-
 const (
 	Espresso = iota + 1
 	Cappuccino
 	Latte
 )
+
+type CoffeeType int
 
 type Coffee struct {
 	Name       string
