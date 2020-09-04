@@ -2,28 +2,31 @@ package visitor
 
 import (
 	"fmt"
-	"patterns/pkg/visitor/types"
+	"patterns/pkg/circle"
+	"patterns/pkg/dot"
+	"patterns/pkg/ivisitor"
+	"patterns/pkg/rectangle"
 	"strings"
 )
 
 type VisitorString struct {
-	types.Visitor
+	ivisitor.Visitor
 }
 
-func (v VisitorString) VisitDot(d types.Dot) string {
+func (v VisitorString) VisitDot(d dot.Dot) string {
 	return fmt.Sprint("Dot: id = ", d.ID, "; x = ", d.X, "; y = ", d.Y)
 }
 
-func (v VisitorString) VisitCircle(c types.Circle) string {
+func (v VisitorString) VisitCircle(c circle.Circle) string {
 	return fmt.Sprint("Circle: id = ", c.ID, "; x = ", c.X, "; y = ", c.Y, "; radius = ", c.Radius)
 }
 
-func (v VisitorString) VisitRectangle(r types.Rectangle) string {
+func (v VisitorString) VisitRectangle(r rectangle.Rectangle) string {
 	return fmt.Sprint("Rectangle: id = ", r.ID, "; x = ", r.X, "; y = ", r.Y,
 		"; width = ", r.Width, "; height = ", r.Heigth)
 }
 
-func (v VisitorString) Export(s ...types.Shape) string {
+func (v VisitorString) Export(s ...ivisitor.Shape) string {
 	var sb strings.Builder
 
 	for _, shape := range s {

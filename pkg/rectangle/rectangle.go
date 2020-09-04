@@ -1,4 +1,8 @@
-package types
+package rectangle
+
+import (
+	"patterns/pkg/ivisitor"
+)
 
 type Rectangle struct {
 	X      int
@@ -8,7 +12,7 @@ type Rectangle struct {
 	ID     int
 }
 
-func (r Rectangle) Accept(visitor Visitor) (s string) {
+func (r Rectangle) Accept(visitor ivisitor.Visitor) (s string) {
 	s = visitor.VisitRectangle(r)
 	return
 }
