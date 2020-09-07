@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	svcCoffee := facade.New(coffee.New(10), milk.New(100), water.New(100))
+	svcCoffee := facade.NewFacade(coffee.NewCoffee(10), milk.NewMilk(100), water.NewWater(100))
 
 	c, err := svcCoffee.DoCoffee(facade.Espresso)
 	if err != nil {

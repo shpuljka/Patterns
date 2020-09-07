@@ -4,7 +4,9 @@ import (
 	"patterns/pkg/cap"
 )
 
+//Интерфейс взаимодействия с кофе
 type CoffeeWork interface {
+	//Добавить кофе
 	AddCoffee(cap *cap.Cap)
 }
 
@@ -16,6 +18,7 @@ func (c *coffee) AddCoffee(cap *cap.Cap) {
 	cap.Volume += c.volume
 }
 
-func New(vol int) (s *coffee) {
+//Создать кофе
+func NewCoffee(vol int) (s *coffee) {
 	return &coffee{volume: vol}
 }

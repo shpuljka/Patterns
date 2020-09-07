@@ -4,7 +4,9 @@ import (
 	"patterns/pkg/cap"
 )
 
+//Интерфейс взаимодействия с молоком
 type MilkWork interface {
+	//Добавить молоко
 	AddMilk(cap *cap.Cap)
 }
 
@@ -17,6 +19,7 @@ func (m *milk) AddMilk(cap *cap.Cap) {
 	cap.IsMilk = true
 }
 
-func New(vol int) (s *milk) {
+//Создать молоко
+func NewMilk(vol int) (s *milk) {
 	return &milk{volume: vol}
 }

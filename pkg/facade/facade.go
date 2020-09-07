@@ -13,12 +13,16 @@ const (
 	Latte
 )
 
+//Интерфейс взаимодействия с фасадом
 type Coffer interface {
+	//Сделать кофе типа t
 	DoCoffee(t CoffeeType) (coffee Coffee, err error)
 }
 
+//Тип кофе
 type CoffeeType int
 
+//Структура кофе
 type Coffee struct {
 	Name       string
 	CoffeeType CoffeeType
@@ -58,7 +62,8 @@ func (c *coffeeSvc) DoCoffee(t CoffeeType) (coffee Coffee, err error) {
 	return
 }
 
-func New(coffee coffee.CoffeeWork, milk milk.MilkWork, water water.WaterWork) (s *coffeeSvc) {
+//Создать фасад
+func NewFacade(coffee coffee.CoffeeWork, milk milk.MilkWork, water water.WaterWork) (s *coffeeSvc) {
 	return &coffeeSvc{
 		coffee: coffee,
 		milk:   milk,
