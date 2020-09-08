@@ -1,20 +1,20 @@
 package coffee
 
 import (
-	"patterns/pkg/cap"
+	"patterns/pkg/model"
 )
 
 //Интерфейс взаимодействия с кофе
 type CoffeeWork interface {
 	//Добавить кофе
-	AddCoffee(cap *cap.Cap)
+	AddCoffee(cap *model.Cup)
 }
 
 type coffee struct {
 	volume int
 }
 
-func (c *coffee) AddCoffee(cap *cap.Cap) {
+func (c *coffee) AddCoffee(cap *model.Cup) {
 	cap.Volume += c.volume
 }
 

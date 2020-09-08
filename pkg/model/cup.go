@@ -1,7 +1,7 @@
-package cap
+package model
 
 //Чашка
-type Cap struct {
+type Cup struct {
 	Volume  int
 	IsMilk  bool
 	IsSugar bool

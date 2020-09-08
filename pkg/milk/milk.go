@@ -1,20 +1,20 @@
 package milk
 
 import (
-	"patterns/pkg/cap"
+	"patterns/pkg/model"
 )
 
 //Интерфейс взаимодействия с молоком
 type MilkWork interface {
 	//Добавить молоко
-	AddMilk(cap *cap.Cap)
+	AddMilk(cap *model.Cup)
 }
 
 type milk struct {
 	volume int
 }
 
-func (m *milk) AddMilk(cap *cap.Cap) {
+func (m *milk) AddMilk(cap *model.Cup) {
 	cap.Volume += m.volume
 	cap.IsMilk = true
 }

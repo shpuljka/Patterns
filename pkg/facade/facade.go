@@ -1,56 +1,47 @@
 package facade
 
 import (
-	"patterns/pkg/cap"
-	"patterns/pkg/coffee"
-	"patterns/pkg/milk"
-	"patterns/pkg/water"
+	"patterns/pkg/model"
 )
 
-const (
-	Espresso = iota + 1
-	Cappuccino
-	Latte
-)
+type milkWork interface {
+	AddMilk(cap *model.Cup)
+}
+
+type coffeeWork interface {
+	AddCoffee(cap *model.Cup)
+}
+
+type waterWork interface {
+	AddWater(cap *model.Cup)
+}
 
 //Интерфейс взаимодействия с фасадом
 type Coffer interface {
 	//Сделать кофе типа t
-	DoCoffee(t CoffeeType) (coffee Coffee, err error)
-}
-
-//Тип кофе
-type CoffeeType int
-
-//Структура кофе
-type Coffee struct {
-	Name       string
-	CoffeeType CoffeeType
-	Volume     int
-	IsMilk     bool
-	IsSugar    bool
+	DoCoffee(t model.CoffeeType) (coffee model.Coffee, err error)
 }
 
 type coffeeSvc struct {
-	milk   milk.MilkWork
-	coffee coffee.CoffeeWork
-	water  water.WaterWork
+	milk   milkWork
+	coffee coffeeWork
+	water  waterWork
 }
 
-func (c *coffeeSvc) DoCoffee(t CoffeeType) (coffee Coffee, err error) {
-	coffee = Coffee{CoffeeType: t}
-	cap := cap.Cap{}
+func (c *coffeeSvc) DoCoffee(t model.CoffeeType) (coffee model.Coffee, err error) {
+	coffee = model.Coffee{CoffeeType: t}
+	cap := model.Cup{}
 	switch t {
-	case Espresso:
+	case model.Espresso:
 		coffee.Name = "Espresso"
 		c.coffee.AddCoffee(&cap)
 		c.water.AddWater(&cap)
-	case Cappuccino:
+	case model.Cappuccino:
 		coffee.Name = "Cappuccino"
 		c.coffee.AddCoffee(&cap)
 		c.water.AddWater(&cap)
 		c.milk.AddMilk(&cap)
-	case Latte:
+	case model.Latte:
 		coffee.Name = "Latte"
 		c.coffee.AddCoffee(&cap)
 		c.water.AddWater(&cap)
@@ -63,9 +54,10 @@ func (c *coffeeSvc) DoCoffee(t CoffeeType) (coffee Coffee, err error) {
 }
 
 //Создать фасад
-func NewFacade(coffee coffee.CoffeeWork, milk milk.MilkWork, water water.WaterWork) (s *coffeeSvc) {
+func NewFacade(coffee coffeeWork, milk milkWork, water waterWork) (s *coffeeSvc) {
 	return &coffeeSvc{
 		coffee: coffee,
 		milk:   milk,
-		water:  water}
+		water:  water,
+	}
 }

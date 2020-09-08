@@ -1,20 +1,20 @@
 package water
 
 import (
-	"patterns/pkg/cap"
+	"patterns/pkg/model"
 )
 
 //интрефейс взаимодействия с водой
 type WaterWork interface {
 	//Добавить воды
-	AddWater(cap *cap.Cap)
+	AddWater(cap *model.Cup)
 }
 
 type water struct {
 	volume int
 }
 
-func (m *water) AddWater(cap *cap.Cap) {
+func (m *water) AddWater(cap *model.Cup) {
 	cap.Volume += m.volume
 }
 
